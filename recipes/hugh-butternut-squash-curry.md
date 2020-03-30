@@ -28,3 +28,7 @@ serves: 4
 
 1. Heat the oil in a large,  heavy-bottomed saucepan over a medium heat. Add the onions and sauté with a pinch of salt until softened and turning golden, stirring frequently, about 15 minutes. Add the garlic, ginger and green chilli, and cook, stirring, for about five minutes. Add the ground coriander, cumin and garam masala, stir for a minute, then toss in the cubes of squash and lentils, and stir until well coated. Pour in the stock and tomatoes, crushing the tomatoes against the sides of the pan with a fork to break them up a bit.
 2. Simmer, part-covered, until the squash and lentils are very tender, about 30 minutes, stirring from time to time. Stir in about two-thirds of the coriander, taste and check the seasoning – add salt and pepper if desired. Serve with basmati rice or the pilaf recipe below, some thick yoghurt and the rest of the coriander scattered over the top
+
+## tips
+
+- Serve it with naan and raita (from a curry house).
