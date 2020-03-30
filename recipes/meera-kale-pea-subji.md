@@ -29,3 +29,7 @@ serves: 4
 3. Add the leeks and cook until they’ve softened and unravelled – around five minutes – then add the mushrooms. It will seem as if there are too many to fit in the pan, but they will soon wilt.
 4. After five minutes, when the mushrooms are juicy, add the chilli, turmeric and salt, then stir in the kale, and cook for eight minutes, until the stems and leaves are tender. Throw in the peas and cook for two or three minutes more, until they are hot and soft.
 5. Check the subji for chilli and salt, adjust to taste, and serve with hot chapatis and a dairy-free yoghurt of your choice.
+
+## tips
+
+- Make sure your dairy-free yoghurt isn’t sweet. Provamel soya is a good option.
