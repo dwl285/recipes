@@ -1,6 +1,6 @@
 import matter from "gray-matter";
 import Link from "next/link";
-import Layout from "../components/MyLayout";
+import Layout from "../components/Layout";
 
 export default function Index(props) {
   return (

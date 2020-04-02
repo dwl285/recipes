@@ -1,6 +1,6 @@
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
-import Layout from "../../components/MyLayout";
+import Layout from "../../components/Layout";
 import { Button, Card, Elevation } from "@blueprintjs/core";
 
 export default function Recipe(props) {
