@@ -20,6 +20,13 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+
+          <script
+            src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
+            crossorigin
+          />
+
+          <script>var Alert = ReactBootstrap.Alert;</script>
         </body>
       </Html>
     );

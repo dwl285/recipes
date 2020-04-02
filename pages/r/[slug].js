@@ -1,19 +1,23 @@
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 import Layout from "../../components/Layout";
-import { Button, Card, Elevation } from "@blueprintjs/core";
+import { Card, Container } from "react-bootstrap";
 
 export default function Recipe(props) {
   const markdownBody = props.content;
   const frontmatter = props.data;
   return (
     <Layout>
-      <Card>
-        <h1>{frontmatter.name}</h1>
-        <div>
-          <ReactMarkdown source={markdownBody} />
-        </div>
-      </Card>
+      <Container>
+        <Card>
+          <Card.Title>{frontmatter.title}</Card.Title>
+          <Card.Body>
+            <Card.Text>
+              <ReactMarkdown source={markdownBody} />
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </Container>
     </Layout>
   );
 }

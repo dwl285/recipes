@@ -1,18 +1,17 @@
 import Link from "next/link";
+import { Nav, Container } from "react-bootstrap";
 
-const linkStyle = {
-  marginRight: 15
-};
-
-const Header = () => (
-  <div>
-    <Link href="/">
-      <a style={linkStyle}>Home</a>
-    </Link>
-    <Link href="/r/random">
-      <a style={linkStyle}>Random Recipe</a>
-    </Link>
-  </div>
+const Header = props => (
+  <Container>
+    <Nav bg="light" expand="lg">
+      <Nav.Item>
+        <Nav.Link href="/">Home</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/r/random">Random Recipe</Nav.Link>
+      </Nav.Item>
+    </Nav>
+  </Container>
 );
 
 export default Header;

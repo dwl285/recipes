@@ -1,20 +1,25 @@
 import matter from "gray-matter";
 import Link from "next/link";
 import Layout from "../components/Layout";
+import { Card, Container, ListGroup, ListGroupItem } from "react-bootstrap";
 
 export default function Index(props) {
   return (
     <Layout>
-      <h1>{props.title}</h1>
-      <ul>
-        {props.allRecipes.map(item => (
-          <li key={item.recipe.data.title}>
-            <Link href="/r/[slug]" as={`/r/${item.slug}`}>
-              <a>{item.recipe.data.title}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <Container>
+        <h1>{props.title}</h1>
+      </Container>
+      <Card>
+        <ListGroup>
+          {props.allRecipes.map(item => (
+            <ListGroupItem key={item.recipe.data.title}>
+              <Link href="/r/[slug]" as={`/r/${item.slug}`}>
+                <a>{item.recipe.data.title}</a>
+              </Link>
+            </ListGroupItem>
+          ))}
+        </ListGroup>
+      </Card>
     </Layout>
   );
 }

@@ -1,15 +1,10 @@
 import Header from "./Header";
-
-const layoutStyle = {
-  margin: 20,
-  padding: 20,
-  border: "1px solid #DDD"
-};
+import { Container } from "react-bootstrap";
 
 const Layout = props => (
-  <div style={layoutStyle}>
-    <Header />
+  <Container>
+    <Header title={props.title} />
     {props.children}
-  </div>
+  </Container>
 );
 export default Layout;
