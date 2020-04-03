@@ -1,17 +1,28 @@
-import Link from "next/link";
 import { Nav, Container } from "react-bootstrap";
+import React, { Component } from "react";
+import useSWR from "swr";
+import fetch from "isomorphic-unfetch";
+import Router from "next/router";
 
-const Header = props => (
-  <Container>
-    <Nav bg="light" expand="lg">
-      <Nav.Item>
-        <Nav.Link href="/">Home</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link href="/r/random">Random Recipe</Nav.Link>
-      </Nav.Item>
-    </Nav>
-  </Container>
-);
-
-export default Header;
+export default () => {
+  const openRandom = async e => {
+    e.preventDefault();
+    const res = await fetch("http://localhost:3000/api/getRandomRecipe");
+    const data = await res.json();
+    Router.push("/r/[slug]", `/r/${data.slug}`);
+  };
+  return (
+    <Container>
+      <Nav bg="light" expand="lg">
+        <Nav.Item>
+          <Nav.Link href="/">Home</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="#" onClick={openRandom}>
+            Random Recipe
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+    </Container>
+  );
+};

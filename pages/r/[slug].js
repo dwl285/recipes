@@ -25,7 +25,6 @@ export default function Recipe(props) {
 Recipe.getInitialProps = async function(context) {
   // context contains the query param
   const { slug } = context.query;
-  console.log(slug);
   // grab the file in the posts dir based on the slug
   const content = await import(`../../recipes/${slug}.md`);
   //gray-matter parses the yaml frontmatter from the md body
