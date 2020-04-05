@@ -1,14 +1,21 @@
 import matter from "gray-matter";
 import Link from "next/link";
 import Layout from "../components/Layout";
-import { Card, Container, ListGroup, ListGroupItem } from "react-bootstrap";
+import {
+  Card,
+  Container,
+  ListGroup,
+  ListGroupItem,
+  Jumbotron,
+  Badge
+} from "react-bootstrap";
 
 export default function Index(props) {
   return (
     <Layout>
-      <Container>
+      <Jumbotron>
         <h1>{props.title}</h1>
-      </Container>
+      </Jumbotron>
       <Card>
         <ListGroup>
           {props.allRecipes.map(item => (
@@ -16,6 +23,14 @@ export default function Index(props) {
               <Link href="/r/[slug]" as={`/r/${item.slug}`}>
                 <a>{item.recipe.data.title}</a>
               </Link>
+              {`  `}
+              <Badge pill variant="info">
+                Cook time: {item.recipe.data.total_cook_time_mins} mins
+              </Badge>
+              {` `}
+              <Badge pill variant="info">
+                Serves: {item.recipe.data.serves}
+              </Badge>
             </ListGroupItem>
           ))}
         </ListGroup>

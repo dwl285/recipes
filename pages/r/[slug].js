@@ -1,7 +1,7 @@
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 import Layout from "../../components/Layout";
-import { Card, Container } from "react-bootstrap";
+import { Card, Container, Jumbotron, Badge } from "react-bootstrap";
 
 export default function Recipe(props) {
   const markdownBody = props.content;
@@ -9,8 +9,19 @@ export default function Recipe(props) {
   return (
     <Layout>
       <Container>
+        <Jumbotron>
+          <h1>{frontmatter.title}</h1>
+          <div>
+            <Badge pill variant="info">
+              Cook time: {frontmatter.total_cook_time_mins} mins
+            </Badge>
+            {` `}
+            <Badge pill variant="info">
+              Serves: {frontmatter.serves}
+            </Badge>
+          </div>
+        </Jumbotron>
         <Card>
-          <Card.Title>{frontmatter.title}</Card.Title>
           <Card.Body>
             <Card.Text>
               <ReactMarkdown source={markdownBody} />
