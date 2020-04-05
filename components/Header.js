@@ -7,7 +7,7 @@ import Router from "next/router";
 export default () => {
   const openRandom = async e => {
     e.preventDefault();
-    const res = await fetch("https://32-recipes.com/api/getRandomRecipe");
+    const res = await fetch("/api/getRandomRecipe");
     const data = await res.json();
     Router.push("/r/[slug]", `/r/${data.slug}`);
   };
