@@ -2,6 +2,7 @@ import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 import Layout from "../../components/Layout";
 import { Card, Container, Jumbotron, Badge } from "react-bootstrap";
+import randomColor from "randomcolor";
 
 export default function Recipe(props) {
   const markdownBody = props.content;
@@ -29,6 +30,14 @@ export default function Recipe(props) {
           </Card.Body>
         </Card>
       </Container>
+      <style jsx>{`
+        h1 {
+          color: ${randomColor({
+            luminosity: "dark",
+            seed: frontmatter.title
+          })};
+        }
+      `}</style>
     </Layout>
   );
 }

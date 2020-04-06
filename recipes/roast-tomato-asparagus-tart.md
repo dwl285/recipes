@@ -4,6 +4,7 @@ original_link:
 date_added: 2020-03-30
 total_cook_time_mins: 90
 serves: 6
+category: "main"
 ---
 
 ## ingredients

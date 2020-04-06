@@ -1,40 +1,60 @@
 import matter from "gray-matter";
-import Link from "next/link";
 import Layout from "../components/Layout";
-import {
-  Card,
-  Container,
-  ListGroup,
-  ListGroupItem,
-  Jumbotron,
-  Badge
-} from "react-bootstrap";
+import RecipeGroup from "../components/RecipeGroup";
+import { Card, Jumbotron, ListGroup } from "react-bootstrap";
+import Slider from "react-input-slider";
+import React, { useState, Fragment } from "react";
 
 export default function Index(props) {
+  const [state, setState] = useState({ x: props.max_cook_time });
+
   return (
     <Layout>
       <Jumbotron>
         <h1>{props.title}</h1>
       </Jumbotron>
       <Card>
-        <ListGroup>
-          {props.allRecipes.map(item => (
-            <ListGroupItem key={item.recipe.data.title}>
-              <Link href="/r/[slug]" as={`/r/${item.slug}`}>
-                <a>{item.recipe.data.title}</a>
-              </Link>
-              {`  `}
-              <Badge pill variant="info">
-                Cook time: {item.recipe.data.total_cook_time_mins} mins
-              </Badge>
-              {` `}
-              <Badge pill variant="info">
-                Serves: {item.recipe.data.serves}
-              </Badge>
-            </ListGroupItem>
-          ))}
+        <Card.Title>Filters</Card.Title>
+        <ListGroup horizontal>
+          <ListGroup.Item>
+            <Fragment>
+              <div>{"Max cooking time: " + state.x + " mins"}</div>
+              <Slider
+                axis="x"
+                xstep={5}
+                xmin={0}
+                xmax={props.max_cook_time}
+                x={state.x}
+                onChange={({ x }) => setState({ x: parseFloat(x.toFixed(2)) })}
+              />
+            </Fragment>
+          </ListGroup.Item>
         </ListGroup>
       </Card>
+      <RecipeGroup
+        category="mains"
+        recipes={props.allRecipes
+          .filter(i => i.recipe.data.category == "main")
+          .filter(i => i.recipe.data.total_cook_time_mins <= state.x)}
+      ></RecipeGroup>
+      <RecipeGroup
+        category="soups_and_sides"
+        recipes={props.allRecipes.filter(
+          i => i.recipe.data.category == "soups_and_sides"
+        )}
+      ></RecipeGroup>
+      <RecipeGroup
+        category="salads"
+        recipes={props.allRecipes.filter(
+          i => i.recipe.data.category == "salads"
+        )}
+      ></RecipeGroup>
+      <RecipeGroup
+        category="sweets"
+        recipes={props.allRecipes.filter(
+          i => i.recipe.data.category == "sweets"
+        )}
+      ></RecipeGroup>
     </Layout>
   );
 }
@@ -63,8 +83,14 @@ Index.getInitialProps = async function() {
     return data;
   })(require.context("../recipes", true, /\.md$/));
 
+  const max_cook_time_array = recipes.map(
+    i => i.recipe.data.total_cook_time_mins
+  );
+  const max_cook_time = Math.max(...max_cook_time_array);
+
   return {
     allRecipes: recipes,
-    ...siteConfig
+    ...siteConfig,
+    max_cook_time
   };
 };
