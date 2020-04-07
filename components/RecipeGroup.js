@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { Card, ListGroup, ListGroupItem, Badge } from "react-bootstrap";
+import {
+  Card,
+  ListGroup,
+  ListGroupItem,
+  Badge,
+  Row,
+  Col
+} from "react-bootstrap";
 
 const RecipeGroup = props => (
   <Card>
@@ -8,17 +15,27 @@ const RecipeGroup = props => (
       <ListGroup>
         {props.recipes.map(item => (
           <ListGroupItem key={item.recipe.data.title} action="true">
-            <Link href="/r/[slug]" as={`/r/${item.slug}`}>
-              <a>{item.recipe.data.title}</a>
-            </Link>
-            {`  `}
-            <Badge pill variant="info">
-              Cook time: {item.recipe.data.total_cook_time_mins} mins
-            </Badge>
-            {` `}
-            <Badge pill variant="info">
-              Serves: {item.recipe.data.serves}
-            </Badge>
+            <Row>
+              <Col>
+                <Link href="/r/[slug]" as={`/r/${item.slug}`}>
+                  <a>{item.recipe.data.title}</a>
+                </Link>
+              </Col>
+              <Col>
+                <Row>
+                  <Col>
+                    <Badge pill variant="info">
+                      Cook time: {item.recipe.data.total_cook_time_mins} mins
+                    </Badge>
+                  </Col>
+                  <Col>
+                    <Badge pill variant="info">
+                      Serves: {item.recipe.data.serves}
+                    </Badge>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
           </ListGroupItem>
         ))}
       </ListGroup>

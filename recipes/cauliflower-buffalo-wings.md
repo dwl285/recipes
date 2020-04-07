@@ -5,6 +5,7 @@ date_added: 2020-03-30
 total_cook_time_mins: 60
 serves: 2
 category: "main"
+image: "https://gnercuto.sirv.com/32-recipes/recipe-photos/cauli-hot-wings.png"
 ---
 
 ## ingredients

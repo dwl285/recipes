@@ -1,7 +1,14 @@
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 import Layout from "../../components/Layout";
-import { Card, Container, Jumbotron, Badge } from "react-bootstrap";
+import {
+  Card,
+  Container,
+  Jumbotron,
+  Badge,
+  Image,
+  Media
+} from "react-bootstrap";
 import randomColor from "randomcolor";
 
 export default function Recipe(props) {
@@ -22,6 +29,14 @@ export default function Recipe(props) {
             </Badge>
           </div>
         </Jumbotron>
+        <Media>
+          <Image
+            rounded
+            height={300}
+            src={frontmatter.image}
+            alt="Generic placeholder"
+          />
+        </Media>
         <Card>
           <Card.Body>
             <Card.Text>
@@ -36,6 +51,10 @@ export default function Recipe(props) {
             luminosity: "dark",
             seed: frontmatter.title
           })};
+        }
+
+        img {
+          width: 100px;
         }
       `}</style>
     </Layout>

@@ -5,6 +5,7 @@ date_added: 2020-03-30
 total_cook_time_mins: 20
 serves: 12
 category: "sweets"
+image: "https://gnercuto.sirv.com/32-recipes/recipe-photos/guiness-cake.png"
 ---
 
 ## ingredients

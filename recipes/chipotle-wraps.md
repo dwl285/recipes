@@ -5,6 +5,7 @@ date_added: 2020-03-30
 total_cook_time_mins: 20
 serves: 2
 category: "main"
+image: "https://gnercuto.sirv.com/32-recipes/recipe-photos/chipotle-tofu-wraps.png"
 ---
 
 ## ingredients

@@ -5,6 +5,7 @@ date_added: 2020-03-30
 total_cook_time_mins: 30
 serves: 4
 category: "soups_and_sides"
+image: "https://gnercuto.sirv.com/32-recipes/recipe-photos/carrot-soup.png"
 ---
 
 ## ingredients

@@ -5,6 +5,7 @@ date_added: 2020-03-30
 total_cook_time_mins: 44
 serves: 4
 category: "main"
+image: "https://gnercuto.sirv.com/32-recipes/recipe-photos/charred-cabbage.png"
 ---
 
 ## ingredients

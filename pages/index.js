@@ -1,7 +1,14 @@
 import matter from "gray-matter";
 import Layout from "../components/Layout";
 import RecipeGroup from "../components/RecipeGroup";
-import { Card, Jumbotron, ListGroup } from "react-bootstrap";
+import {
+  Card,
+  Jumbotron,
+  ListGroup,
+  Container,
+  Row,
+  Col
+} from "react-bootstrap";
 import Slider from "react-input-slider";
 import React, { useState, Fragment } from "react";
 
@@ -13,10 +20,9 @@ export default function Index(props) {
       <Jumbotron>
         <h1>{props.title}</h1>
       </Jumbotron>
-      <Card>
-        <Card.Title>Filters</Card.Title>
-        <ListGroup horizontal>
-          <ListGroup.Item>
+      <Container>
+        <Row>
+          <Col>
             <Fragment>
               <div>{"Max cooking time: " + state.x + " mins"}</div>
               <Slider
@@ -28,9 +34,9 @@ export default function Index(props) {
                 onChange={({ x }) => setState({ x: parseFloat(x.toFixed(2)) })}
               />
             </Fragment>
-          </ListGroup.Item>
-        </ListGroup>
-      </Card>
+          </Col>
+        </Row>
+      </Container>
       <RecipeGroup
         category="mains"
         recipes={props.allRecipes

@@ -5,6 +5,7 @@ date_added: 2020-03-30
 total_cook_time_mins: 45
 serves: 4
 category: "salads"
+image: "https://gnercuto.sirv.com/32-recipes/recipe-photos/cavolo-nero-salad.png"
 ---
 
 ## ingredients
