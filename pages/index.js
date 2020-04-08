@@ -10,7 +10,7 @@ export default function Index(props) {
 
   return (
     <Layout siteTitle={props.title}>
-      <Container>
+      <Container className="filter-group">
         <Row>
           <Col>
             <Fragment>
@@ -51,6 +51,11 @@ export default function Index(props) {
           i => i.recipe.data.category == "sweets"
         )}
       ></RecipeGroup>
+      <style jsx>{`
+        .filter-group {
+          padding: 20px;
+        }
+      `}</style>
     </Layout>
   );
 }
