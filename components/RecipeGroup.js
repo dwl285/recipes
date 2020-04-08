@@ -7,6 +7,8 @@ import {
   Row,
   Col
 } from "react-bootstrap";
+import Person from "./Person";
+import Stopwatch from "./Stopwatch";
 
 const RecipeGroup = props => (
   <Card>
@@ -25,12 +27,15 @@ const RecipeGroup = props => (
                 <Row>
                   <Col>
                     <Badge pill variant="info">
-                      Cook time: {item.recipe.data.total_cook_time_mins} mins
+                      <Stopwatch></Stopwatch>
+                      {` `}
+                      {item.recipe.data.total_cook_time_mins}
                     </Badge>
                   </Col>
                   <Col>
                     <Badge pill variant="info">
-                      Serves: {item.recipe.data.serves}
+                      <Person></Person>
+                      {` `} {item.recipe.data.serves}
                     </Badge>
                   </Col>
                 </Row>

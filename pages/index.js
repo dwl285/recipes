@@ -1,14 +1,7 @@
 import matter from "gray-matter";
 import Layout from "../components/Layout";
 import RecipeGroup from "../components/RecipeGroup";
-import {
-  Card,
-  Jumbotron,
-  ListGroup,
-  Container,
-  Row,
-  Col
-} from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import Slider from "react-input-slider";
 import React, { useState, Fragment } from "react";
 
@@ -16,10 +9,7 @@ export default function Index(props) {
   const [state, setState] = useState({ x: props.max_cook_time });
 
   return (
-    <Layout>
-      <Jumbotron>
-        <h1>{props.title}</h1>
-      </Jumbotron>
+    <Layout siteTitle={props.title}>
       <Container>
         <Row>
           <Col>
