@@ -4,13 +4,14 @@ import RecipeGroup from "../components/RecipeGroup";
 import { Container, Row, Col } from "react-bootstrap";
 import Slider from "react-input-slider";
 import React, { useState, Fragment } from "react";
+import styles from "./index.module.scss";
 
 export default function Index(props) {
   const [state, setState] = useState({ x: props.max_cook_time });
 
   return (
     <Layout siteTitle={props.title}>
-      <Container className="filter-group">
+      <Container className={styles.filters}>
         <Row>
           <Col>
             <Fragment>
@@ -51,11 +52,6 @@ export default function Index(props) {
           i => i.recipe.data.category == "sweets"
         )}
       ></RecipeGroup>
-      <style jsx>{`
-        .filter-group {
-          padding: 20px;
-        }
-      `}</style>
     </Layout>
   );
 }
