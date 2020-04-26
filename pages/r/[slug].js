@@ -45,18 +45,6 @@ export default function Recipe(props) {
           </Card.Body>
         </Card>
       </Container>
-      <style jsx>{`
-        h1 {
-          color: ${randomColor({
-            luminosity: "dark",
-            seed: frontmatter.title
-          })};
-        }
-
-        img {
-          width: 100px;
-        }
-      `}</style>
     </Layout>
   );
 }
