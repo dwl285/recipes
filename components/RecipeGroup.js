@@ -5,17 +5,17 @@ import {
   ListGroupItem,
   Badge,
   Row,
-  Col
+  Col,
 } from "react-bootstrap";
 import Person from "./Person";
 import Stopwatch from "./Stopwatch";
 
-const RecipeGroup = props => (
+const RecipeGroup = (props) => (
   <Card>
     <Card.Header>{props.category}</Card.Header>
     <Card.Body>
       <ListGroup>
-        {props.recipes.map(item => (
+        {props.recipes.map((item) => (
           <ListGroupItem key={item.recipe.data.title} action="true">
             <Row>
               <Col>

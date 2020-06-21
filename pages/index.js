@@ -1,16 +1,17 @@
 import matter from "gray-matter";
 import Layout from "../components/Layout";
 import RecipeGroup from "../components/RecipeGroup";
-import { Container, Row, Col } from "react-bootstrap";
+import RecipeCard from "../components/RecipeCard";
 import Slider from "react-input-slider";
 import React, { useState, Fragment } from "react";
+import theme from "../styles/theme.js";
 
 export default function Index(props) {
   const [state, setState] = useState({ x: props.max_cook_time });
 
   return (
     <Layout siteTitle={props.title}>
-      <Container>
+      {/* <Container>
         <Row>
           <Col>
             <Fragment>
@@ -26,39 +27,54 @@ export default function Index(props) {
             </Fragment>
           </Col>
         </Row>
-      </Container>
-      <RecipeGroup
+      </Container> */}
+      <div className="recipe_cards">
+        {props.allRecipes.map((item) => (
+          <RecipeCard recipe={item.recipe.data} slug={item.slug}></RecipeCard>
+        ))}
+      </div>
+      {/* <RecipeGroup
         category="mains"
         recipes={props.allRecipes
-          .filter(i => i.recipe.data.category == "main")
-          .filter(i => i.recipe.data.total_cook_time_mins <= state.x)}
+          .filter((i) => i.recipe.data.category == "main")
+          .filter((i) => i.recipe.data.total_cook_time_mins <= state.x)}
       ></RecipeGroup>
       <RecipeGroup
         category="soups_and_sides"
         recipes={props.allRecipes.filter(
-          i => i.recipe.data.category == "soups_and_sides"
+          (i) => i.recipe.data.category == "soups_and_sides"
         )}
       ></RecipeGroup>
       <RecipeGroup
         category="salads"
         recipes={props.allRecipes.filter(
-          i => i.recipe.data.category == "salads"
+          (i) => i.recipe.data.category == "salads"
         )}
       ></RecipeGroup>
       <RecipeGroup
         category="sweets"
         recipes={props.allRecipes.filter(
-          i => i.recipe.data.category == "sweets"
+          (i) => i.recipe.data.category == "sweets"
         )}
-      ></RecipeGroup>
+      ></RecipeGroup> */}
+
+      <style jsx>
+        {`
+          .recipe_cards {
+            margin: 16px;
+            display: flex;
+            flex-flow: column wrap;
+          }
+        `}
+      </style>
     </Layout>
   );
 }
 
-Index.getInitialProps = async function() {
+Index.getInitialProps = async function () {
   const siteConfig = await import(`../data/config.json`);
   //get posts & context from folder
-  const recipes = (context => {
+  const recipes = ((context) => {
     const keys = context.keys();
     const values = keys.map(context);
     const data = keys.map((key, index) => {
@@ -73,20 +89,20 @@ Index.getInitialProps = async function() {
       const recipe = matter(value.default);
       return {
         recipe,
-        slug
+        slug,
       };
     });
     return data;
   })(require.context("../recipes", true, /\.md$/));
 
   const max_cook_time_array = recipes.map(
-    i => i.recipe.data.total_cook_time_mins
+    (i) => i.recipe.data.total_cook_time_mins
   );
   const max_cook_time = Math.max(...max_cook_time_array);
 
   return {
     allRecipes: recipes,
     ...siteConfig,
-    max_cook_time
+    max_cook_time,
   };
 };
