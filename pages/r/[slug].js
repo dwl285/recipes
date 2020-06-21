@@ -1,67 +1,46 @@
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 import Layout from "../../components/Layout";
+import RecipeTitle from "../../components/RecipeTitle";
 import {
   Card,
   Container,
   Jumbotron,
   Badge,
   Image,
-  Media
+  Media,
 } from "react-bootstrap";
 import randomColor from "randomcolor";
+import RecipeImage from "../../components/RecipeImage";
+import Ingredients from "../../components/Ingredients";
+import Method from "../../components/Method";
 
 export default function Recipe(props) {
   const markdownBody = props.content;
   const frontmatter = props.data;
   return (
     <Layout siteTitle={props.title}>
-      <Container>
-        <Jumbotron>
-          <h1>{frontmatter.title}</h1>
-          <div>
-            <Badge pill variant="info">
-              Cook time: {frontmatter.total_cook_time_mins} mins
-            </Badge>
-            {` `}
-            <Badge pill variant="info">
-              Serves: {frontmatter.serves}
-            </Badge>
-          </div>
-        </Jumbotron>
-        <Media>
-          <Image
-            rounded
-            height={300}
-            src={frontmatter.image}
-            alt="Generic placeholder"
-          />
-        </Media>
-        <Card>
-          <Card.Body>
-            <Card.Text>
-              <ReactMarkdown source={markdownBody} />
-            </Card.Text>
-          </Card.Body>
-        </Card>
-      </Container>
+      <div className="recipe_body">
+        <RecipeTitle
+          recipe_title={frontmatter.title}
+          total_cook_time_mins={frontmatter.total_cook_time_mins}
+          serves={frontmatter.serves}
+        ></RecipeTitle>
+        <RecipeImage image={frontmatter.image}></RecipeImage>
+        <Ingredients ingredients={frontmatter.ingredients}></Ingredients>
+        <Method method={frontmatter.method}></Method>
+      </div>
       <style jsx>{`
-        h1 {
-          color: ${randomColor({
-            luminosity: "dark",
-            seed: frontmatter.title
-          })};
-        }
-
-        img {
-          width: 100px;
+        .recipe_body {
+          display: flex;
+          flex-flow: column nowrap;
         }
       `}</style>
     </Layout>
   );
 }
 
-Recipe.getInitialProps = async function(context) {
+Recipe.getInitialProps = async function (context) {
   const siteConfig = await import(`../../data/config.json`);
   // context contains the query param
   const { slug } = context.query;
@@ -71,6 +50,6 @@ Recipe.getInitialProps = async function(context) {
   const data = matter(content.default);
   return {
     ...data,
-    ...siteConfig
+    ...siteConfig,
   };
 };

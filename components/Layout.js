@@ -1,11 +1,15 @@
 import Header from "./Header";
-import { Container } from "react-bootstrap";
+import Body from "./Body";
+import globalStyles from "../styles/global.js";
 import React, { Fragment } from "react";
 
-const Layout = props => (
-  <Fragment>
+const Layout = (props) => (
+  <div>
     <Header siteTitle={props.siteTitle} />
-    <Container>{props.children}</Container>
-  </Fragment>
+    <Body>{props.children}</Body>
+    <style jsx global>
+      {globalStyles}
+    </style>
+  </div>
 );
 export default Layout;

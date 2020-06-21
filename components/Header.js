@@ -1,10 +1,12 @@
-import { Nav, Navbar } from "react-bootstrap";
 import React from "react";
 import fetch from "isomorphic-unfetch";
 import Router from "next/router";
+import Logo from "./Logo.js";
+import Shuffle from "./Shuffle.js";
+import theme from "../styles/theme";
 
 export default function Header(props) {
-  const openRandom = async e => {
+  const openRandom = async (e) => {
     e.preventDefault();
     const res = await fetch("/api/getRandomRecipe");
     const data = await res.json();
@@ -12,28 +14,52 @@ export default function Header(props) {
   };
 
   return (
-    <Navbar
-      collapseOnSelect
-      expand="sm"
-      bg="dark"
-      variant="dark"
-      className="navbar-static-top"
-    >
-      <Navbar.Brand href="/">{props.siteTitle}</Navbar.Brand>
-      <Nav>
-        <Nav.Link href="#" onClick={openRandom}>
-          Random Recipe
-        </Nav.Link>
-      </Nav>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse
-        id="responsive-navbar-nav"
-        className="justify-content-end"
-      >
-        <Nav>
-          <Nav.Link href="https://github.com/dwl285/recipes">GitHub</Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <nav className="main_nav">
+      <div className="logo">
+        <a href="/">
+          <Logo title={props.siteTitle}></Logo>
+        </a>
+      </div>
+
+      <div className="links">
+        <div className="shuffle">
+          <a href="#" onClick={openRandom}>
+            <Shuffle></Shuffle>
+          </a>
+        </div>
+      </div>
+      <style jsx>
+        {`
+          .main_nav {
+            background: ${theme.colors.brandSecondary};
+            display: flex;
+            height: 50px;
+            padding: 8px;
+            align-items: center;
+            justify-content: space-between;
+          }
+          .logo {
+            height: 50px;
+            padding: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          a {
+            text-decoration: none;
+          }
+          .links {
+            margin: 8px;
+          }
+          .shuffle {
+            margin: 0px;
+            padding: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        `}
+      </style>
+    </nav>
   );
 }
