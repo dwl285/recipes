@@ -1,7 +1,7 @@
 import Header from "./Header";
 import Body from "./Body";
 import globalStyles from "../styles/global.js";
-import React, { Fragment } from "react";
+import React from "react";
 
 const Layout = (props) => (
   <div>

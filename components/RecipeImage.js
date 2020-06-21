@@ -7,7 +7,10 @@ const RecipeImage = (props) => (
       {`
         .recipe_image {
           display: flex;
-          height: 300px;
+          max-height: ${props.height ? props.height : "300px"};
+          max-width: ${props.height ? props.height : "300px"};
+          width: auto;
+          height: auto;
           justify-content: center;
           align-items: center;
         }
