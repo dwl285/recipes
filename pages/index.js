@@ -30,40 +30,20 @@ export default function Index(props) {
       </Container> */}
       <div className="recipe_cards">
         {props.allRecipes.map((item) => (
-          <RecipeCard recipe={item.recipe.data} slug={item.slug}></RecipeCard>
+          <RecipeCard
+            recipe={item.recipe.data}
+            slug={item.slug}
+            className="recipe_card"
+          ></RecipeCard>
         ))}
       </div>
-      {/* <RecipeGroup
-        category="mains"
-        recipes={props.allRecipes
-          .filter((i) => i.recipe.data.category == "main")
-          .filter((i) => i.recipe.data.total_cook_time_mins <= state.x)}
-      ></RecipeGroup>
-      <RecipeGroup
-        category="soups_and_sides"
-        recipes={props.allRecipes.filter(
-          (i) => i.recipe.data.category == "soups_and_sides"
-        )}
-      ></RecipeGroup>
-      <RecipeGroup
-        category="salads"
-        recipes={props.allRecipes.filter(
-          (i) => i.recipe.data.category == "salads"
-        )}
-      ></RecipeGroup>
-      <RecipeGroup
-        category="sweets"
-        recipes={props.allRecipes.filter(
-          (i) => i.recipe.data.category == "sweets"
-        )}
-      ></RecipeGroup> */}
 
       <style jsx>
         {`
           .recipe_cards {
-            margin: 16px;
             display: flex;
-            flex-flow: column wrap;
+            flex-flow: row wrap;
+            justify-content: space-around;
           }
         `}
       </style>

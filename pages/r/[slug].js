@@ -26,7 +26,7 @@ export default function Recipe(props) {
           total_cook_time_mins={frontmatter.total_cook_time_mins}
           serves={frontmatter.serves}
         ></RecipeTitle>
-        <RecipeImage image={frontmatter.image}></RecipeImage>
+        <RecipeImage image={frontmatter.image} className="test"></RecipeImage>
         <Ingredients ingredients={frontmatter.ingredients}></Ingredients>
         <Method method={frontmatter.method}></Method>
       </div>
@@ -34,6 +34,9 @@ export default function Recipe(props) {
         .recipe_body {
           display: flex;
           flex-flow: column nowrap;
+        }
+        .test {
+          margin: 10px;
         }
       `}</style>
     </Layout>
