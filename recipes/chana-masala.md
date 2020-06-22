@@ -5,7 +5,7 @@ date_added: 2020-03-30
 total_cook_time_mins: 40
 serves: 3
 category: "main"
-image: "https://32-recipes.sirv.com/32-recipes/recipe-photos/chana-masala.png"
+image: "https://32-recipes.sirv.com/32-recipes/recipe-photos/channa-masala.png"
 
 ingredients:
   - 800g canned chickpeas or 720g jar giant chickpeas

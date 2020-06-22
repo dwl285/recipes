@@ -31,7 +31,11 @@ const RecipeCard = (props) => (
         margin: 8px;
         display: flex;
         flex-flow: column nowrap;
-        max-width: 150px;
+        flex-basis: 40%;
+        justify-content: space-between;
+      }
+      h4 {
+        margin: 8px 0px;
       }
       a {
         text-decoration: none;

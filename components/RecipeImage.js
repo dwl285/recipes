@@ -15,10 +15,10 @@ const RecipeImage = (props) => (
           align-items: center;
         }
         .recipe_image img {
-          margin: 10px;
           border-radius: 4px;
           max-width: 100%;
           max-height: 100%;
+          margin: 8px;
         }
       `}
     </style>
