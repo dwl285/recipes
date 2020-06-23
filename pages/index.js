@@ -1,41 +1,34 @@
 import matter from "gray-matter";
 import Layout from "../components/Layout";
-import RecipeGroup from "../components/RecipeGroup";
 import RecipeCard from "../components/RecipeCard";
 import Slider from "react-input-slider";
-import React, { useState, Fragment } from "react";
-import theme from "../styles/theme.js";
+import React, { useState, UseEffect, useEffect } from "react";
+import RecipeFilters from "../components/RecipeFilters";
 
-export default function Index(props) {
-  const [state, setState] = useState({ x: props.max_cook_time });
+const Index = (props) => {
+  const [state, setState] = useState(props.max_cook_time);
+
+  const handleSlider = (maxCookTime) => {
+    setState(maxCookTime);
+  };
 
   return (
     <Layout siteTitle={props.title}>
-      {/* <Container>
-        <Row>
-          <Col>
-            <Fragment>
-              <div>{"Max cooking time: " + state.x + " mins"}</div>
-              <Slider
-                axis="x"
-                xstep={5}
-                xmin={0}
-                xmax={props.max_cook_time}
-                x={state.x}
-                onChange={({ x }) => setState({ x: parseFloat(x.toFixed(2)) })}
-              />
-            </Fragment>
-          </Col>
-        </Row>
-      </Container> */}
+      <RecipeFilters
+        className="recipe_filters"
+        max_cook_time={props.max_cook_time}
+        handleSlider={handleSlider}
+      ></RecipeFilters>
       <div className="recipe_cards">
-        {props.allRecipes.map((item) => (
-          <RecipeCard
-            recipe={item.recipe.data}
-            slug={item.slug}
-            className="recipe_card"
-          ></RecipeCard>
-        ))}
+        {props.allRecipes
+          // .filter((i) => i.recipe.data.total_cook_time_mins <= state.x)
+          .map((item) => (
+            <RecipeCard
+              recipe={item.recipe.data}
+              slug={item.slug}
+              className="recipe_card"
+            ></RecipeCard>
+          ))}
       </div>
 
       <style jsx>
@@ -50,7 +43,9 @@ export default function Index(props) {
       </style>
     </Layout>
   );
-}
+};
+
+export default Index;
 
 Index.getInitialProps = async function () {
   const siteConfig = await import(`../data/config.json`);
