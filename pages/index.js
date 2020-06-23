@@ -44,6 +44,7 @@ export default function Index(props) {
             display: flex;
             flex-flow: row wrap;
             justify-content: space-around;
+            width: 100%;
           }
         `}
       </style>

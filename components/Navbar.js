@@ -46,6 +46,7 @@ const Navbar = (props) => (
         }
         a {
           text-decoration: none;
+          display: flex;
         }
         .links {
           margin: 8px;
@@ -54,8 +55,6 @@ const Navbar = (props) => (
           margin: 0px;
           padding: 0px;
           display: flex;
-          justify-content: center;
-          align-items: center;
         }
       `}
     </style>
