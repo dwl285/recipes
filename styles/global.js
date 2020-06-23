@@ -3,6 +3,14 @@ import css from "styled-jsx/css";
 import theme from "./theme.js";
 
 export default css.global`
+  html {
+    box-sizing: border-box;
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
   body {
     background: ${theme.colors.background};
     color: ${theme.colors.textPrimary};

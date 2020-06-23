@@ -7,18 +7,12 @@ const RecipeImage = (props) => (
       {`
         .recipe_image {
           display: flex;
-          max-height: ${props.height ? props.height : "300px"};
-          max-width: ${props.height ? props.height : "300px"};
-          width: auto;
-          height: auto;
+          flex-flow: row nowrap;
           justify-content: center;
-          align-items: center;
         }
         .recipe_image img {
           border-radius: 4px;
-          max-width: 100%;
-          max-height: 100%;
-          margin: 8px;
+          max-width: 90%;
         }
       `}
     </style>
