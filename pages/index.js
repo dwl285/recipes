@@ -32,7 +32,7 @@ const Index = (props) => {
 
   useEffect(() => {
     const results = props.allRecipes.filter((i) =>
-      i.recipe.data.title.toLowerCase().includes(searchTerm)
+      i.recipe.data.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(results);
   }, [searchTerm]);
