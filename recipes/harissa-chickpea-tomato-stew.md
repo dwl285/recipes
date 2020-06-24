@@ -4,7 +4,8 @@ original_link:
 date_added: 2020-03-30
 total_cook_time_mins: 40
 serves: 3
-category: "main"
+tags:
+  - "main"
 ingredients:
   - 1 tbsp olive oil
   - 1 onion, halved and thinly sliced

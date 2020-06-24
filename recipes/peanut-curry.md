@@ -4,7 +4,8 @@ original_link:
 date_added: 2020-03-30
 total_cook_time_mins:
 serves:
-category: "main"
+tags:
+  - "main"
 ingredients:
   - 2 tbsp peanut butter (vegan of course)
   - Tin of chickpeas

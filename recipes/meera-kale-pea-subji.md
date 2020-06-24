@@ -4,7 +4,8 @@ original_link: "https://www.theguardian.com/lifeandstyle/2018/mar/03/leek-mushro
 date_added: 2020-03-29
 total_cook_time_mins: 40
 serves: 4
-category: "main"
+tags:
+  - "main"
 ingredients:
   - 1 tsp cumin seeds
   - 1 tsp fennel seeds

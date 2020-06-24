@@ -4,7 +4,8 @@ original_link:
 date_added: 2020-03-30
 total_cook_time_mins: 40
 serves: 4
-category: "main"
+tags:
+  - "main"
 ingredients:
   - 4 tbsp sunflower oil
   - 3 onions, peeled, halved and thinly sliced

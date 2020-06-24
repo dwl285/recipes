@@ -1,28 +1,65 @@
 import matter from "gray-matter";
 import Layout from "../components/Layout";
 import RecipeCard from "../components/RecipeCard";
-import Slider from "react-input-slider";
-import React, { useState, UseEffect, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import RecipeFilters from "../components/RecipeFilters";
 
 const Index = (props) => {
-  const [state, setState] = useState(props.max_cook_time);
-
+  // Slider state
+  const [cookTime, setCookTime] = useState(props.max_cook_time);
   const handleSlider = ({ x }) => {
-    setState(x);
+    setCookTime(x);
   };
+
+  // tags state
+  const tag_options = props.unique_tags.map((tag) => {
+    const option = {
+      label: tag,
+      value: tag,
+    };
+    return option;
+  });
+
+  const [selected, setSelected] = useState(tag_options);
+
+  // search box state
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  useEffect(() => {
+    const results = props.allRecipes.filter((i) =>
+      i.recipe.data.title.toLowerCase().includes(searchTerm)
+    );
+    setSearchResults(results);
+  }, [searchTerm]);
 
   return (
     <Layout siteTitle={props.title}>
       <RecipeFilters
-        className="recipe_filters"
-        cook_time={state}
+        cook_time={cookTime}
         max_cook_time={props.max_cook_time}
         handleSlider={handleSlider}
+        tag_options={tag_options}
+        tags_selected={selected}
+        setSelectedTags={setSelected}
+        searchTerm={searchTerm}
+        handleSearchChange={handleSearchChange}
       ></RecipeFilters>
       <div className="recipe_cards">
-        {props.allRecipes
-          .filter((i) => i.recipe.data.total_cook_time_mins <= state)
+        {console.log(selected[0])}
+        {searchResults
+          .filter((i) => i.recipe.data.total_cook_time_mins <= cookTime)
+          .filter((i) => {
+            return !selected[0]
+              ? i
+              : i.recipe.data.tags.some((item) =>
+                  selected.map((s) => s.value).includes(item)
+                );
+          })
           .map((item) => (
             <RecipeCard
               recipe={item.recipe.data}
@@ -72,14 +109,23 @@ Index.getInitialProps = async function () {
     return data;
   })(require.context("../recipes", true, /\.md$/));
 
-  const max_cook_time_array = recipes.map(
-    (i) => i.recipe.data.total_cook_time_mins
+  const max_cook_time = Math.max(
+    ...recipes.map((i) => i.recipe.data.total_cook_time_mins)
   );
-  const max_cook_time = Math.max(...max_cook_time_array);
+
+  const tags = [].concat.apply(
+    [],
+    recipes.map((i) => i.recipe.data.tags)
+  );
+
+  const unique_tags = [...new Set(tags)].sort();
+
+  console.log(unique_tags);
 
   return {
     allRecipes: recipes,
     ...siteConfig,
     max_cook_time,
+    unique_tags,
   };
 };

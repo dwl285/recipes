@@ -4,7 +4,8 @@ original_link:
 date_added: 2020-03-30
 total_cook_time_mins: 20
 serves: 12
-category: "sweets"
+tags:
+  - "sweets"
 image: "https://32-recipes.sirv.com/32-recipes/recipe-photos/guiness-cake.png"
 ingredients:
   - << For the cake >>

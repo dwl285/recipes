@@ -9,9 +9,7 @@ class MyApp extends App {
 
     return (
       <Container>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <Component {...pageProps} />
       </Container>
     );
   }
