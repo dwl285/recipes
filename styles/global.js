@@ -52,7 +52,18 @@ export default css.global`
     padding: 0px;
   }
   p {
+    color: ${theme.colors.textPrimary};
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
     margin: 0px;
     padding: 0px;
+  }
+
+  input {
+    font-size: 14px;
+    font-style: normal;
+    color: ${theme.colors.textSecondary};
   }
 `;

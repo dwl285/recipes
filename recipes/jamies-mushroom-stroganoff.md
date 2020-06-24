@@ -4,7 +4,8 @@ original_link:
 date_added: 2020-03-31
 total_cook_time_mins: 20
 serves: 2
-category: "main"
+tags:
+  - "main"
 ingredients:
   - 400 g mixed mushrooms
   - 1 red onion
