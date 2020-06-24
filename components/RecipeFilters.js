@@ -3,16 +3,11 @@ import React, { useState, useEffect } from "react";
 import theme from "../styles/theme";
 
 const RecipeFilters = (props) => {
-  const [state, setState] = useState({ x: props.max_cook_time });
-
-  useEffect(() => {
-    props.handleSlider(state);
-  }, [state]); // run whenever beerCount is changed
-
   return (
     <div className="filters">
+      {console.log(props.max_cook_time)}
       <div className="slider">
-        <p>{"Max cooking time: " + state.x + " mins"}</p>
+        <p>{"Max cooking time: " + props.cook_time + " mins"}</p>
         <Slider
           styles={{
             track: {
@@ -31,10 +26,8 @@ const RecipeFilters = (props) => {
           xstep={5}
           xmin={0}
           xmax={props.max_cook_time}
-          x={state.x}
-          onChange={({ x }) => {
-            setState((state) => ({ x }));
-          }}
+          x={props.cook_time}
+          onChange={props.handleSlider}
         />
       </div>
       <style jsx>{`
