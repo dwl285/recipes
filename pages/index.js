@@ -8,20 +8,21 @@ import RecipeFilters from "../components/RecipeFilters";
 const Index = (props) => {
   const [state, setState] = useState(props.max_cook_time);
 
-  const handleSlider = (maxCookTime) => {
-    setState(maxCookTime);
+  const handleSlider = ({ x }) => {
+    setState(x);
   };
 
   return (
     <Layout siteTitle={props.title}>
       <RecipeFilters
         className="recipe_filters"
+        cook_time={state}
         max_cook_time={props.max_cook_time}
         handleSlider={handleSlider}
       ></RecipeFilters>
       <div className="recipe_cards">
         {props.allRecipes
-          // .filter((i) => i.recipe.data.total_cook_time_mins <= state.x)
+          .filter((i) => i.recipe.data.total_cook_time_mins <= state)
           .map((item) => (
             <RecipeCard
               recipe={item.recipe.data}
