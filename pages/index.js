@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import RecipeCard from "../components/RecipeCard";
 import React, { useState, useEffect } from "react";
 import RecipeFilters from "../components/RecipeFilters";
+import absoluteUrl from "next-absolute-url";
 
 const Index = (props) => {
   // Slider state
@@ -32,7 +33,7 @@ const Index = (props) => {
 
   useEffect(() => {
     const results = props.allRecipes.filter((i) =>
-      i.recipe.data.title.toLowerCase().includes(searchTerm.toLowerCase())
+      i.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(results);
   }, [searchTerm]);
@@ -50,20 +51,19 @@ const Index = (props) => {
         handleSearchChange={handleSearchChange}
       ></RecipeFilters>
       <div className="recipe_cards">
-        {console.log(selected[0])}
         {searchResults
-          .filter((i) => i.recipe.data.total_cook_time_mins <= cookTime)
+          .filter((i) => i.total_cook_time_mins <= cookTime)
           .filter((i) => {
             return !selected[0]
               ? i
-              : i.recipe.data.tags.some((item) =>
+              : i.tags.some((item) =>
                   selected.map((s) => s.value).includes(item)
                 );
           })
           .map((item) => (
             <RecipeCard
-              recipe={item.recipe.data}
-              slug={item.slug}
+              recipe={item}
+              slug={item._id}
               className="recipe_card"
             ></RecipeCard>
           ))}
@@ -85,43 +85,24 @@ const Index = (props) => {
 
 export default Index;
 
-Index.getInitialProps = async function () {
+Index.getInitialProps = async function (context) {
+  const host = absoluteUrl(context.req, context.req.headers.host);
+
   const siteConfig = await import(`../data/config.json`);
   //get posts & context from folder
-  const recipes = ((context) => {
-    const keys = context.keys();
-    const values = keys.map(context);
-    const data = keys.map((key, index) => {
-      // Create slug from filename
-      const slug = key
-        .replace(/^.*[\\\/]/, "")
-        .split(".")
-        .slice(0, -1)
-        .join(".");
-      const value = values[index];
-      // Parse yaml metadata & markdownbody in document
-      const recipe = matter(value.default);
-      return {
-        recipe,
-        slug,
-      };
-    });
-    return data;
-  })(require.context("../recipes", true, /\.md$/));
+  const res = await fetch(host.origin + "/api/recipes");
+  const recipes = await res.json();
 
   const max_cook_time = Math.max(
-    ...recipes.map((i) => i.recipe.data.total_cook_time_mins)
+    ...recipes.map((i) => i.total_cook_time_mins ?? 0)
   );
 
   const tags = [].concat.apply(
     [],
-    recipes.map((i) => i.recipe.data.tags)
+    recipes.map((i) => i.tags)
   );
 
   const unique_tags = [...new Set(tags)].sort();
-
-  console.log(unique_tags);
-
   return {
     allRecipes: recipes,
     ...siteConfig,

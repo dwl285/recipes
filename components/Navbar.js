@@ -9,7 +9,7 @@ const openRandom = async (e) => {
   e.preventDefault();
   const res = await fetch("/api/getRandomRecipe");
   const data = await res.json();
-  Router.push("/r/[slug]", `/r/${data.slug}`);
+  Router.push("/r/[slug]", `/r/${data._id}`);
 };
 
 const Navbar = (props) => (
