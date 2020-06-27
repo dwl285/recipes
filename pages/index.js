@@ -85,7 +85,7 @@ const Index = (props) => {
 
 export default Index;
 
-Index.getInitialProps = async function (context) {
+export const getServerSideProps = async (context) => {
   const host = absoluteUrl(context.req, context.req.headers.host);
 
   const siteConfig = await import(`../data/config.json`);
@@ -104,9 +104,11 @@ Index.getInitialProps = async function (context) {
 
   const unique_tags = [...new Set(tags)].sort();
   return {
-    allRecipes: recipes,
-    ...siteConfig,
-    max_cook_time,
-    unique_tags,
+    props: {
+      allRecipes: recipes,
+      ...siteConfig,
+      max_cook_time,
+      unique_tags,
+    },
   };
 };

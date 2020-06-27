@@ -31,7 +31,7 @@ export default function Recipe(props) {
   );
 }
 
-Recipe.getInitialProps = async function (context) {
+export const getServerSideProps = async (context) => {
   const host = absoluteUrl(context.req, context.req.headers.host);
 
   const siteConfig = await import(`../../data/config.json`);
@@ -43,7 +43,9 @@ Recipe.getInitialProps = async function (context) {
   const recipe = await res.json();
 
   return {
-    recipe,
-    ...siteConfig,
+    props: {
+      recipe,
+      ...siteConfig,
+    },
   };
 };
