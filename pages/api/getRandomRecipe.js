@@ -14,7 +14,6 @@ handler.get(async (req, res) => {
     .limit(-1)
     .skip(r)
     .next();
-  console.log(randomDocument);
   res.json(randomDocument);
 });
 

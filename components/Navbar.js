@@ -3,6 +3,7 @@ import fetch from "isomorphic-unfetch";
 import Router from "next/router";
 import Logo from "./Logo.js";
 import Shuffle from "./Shuffle.js";
+import Add from "./Add.js";
 import theme from "../styles/theme";
 
 const openRandom = async (e) => {
@@ -21,6 +22,11 @@ const Navbar = (props) => (
     </div>
 
     <div className="links">
+      <div className="add">
+        <a href="/r/update/new/">
+          <Add></Add>
+        </a>
+      </div>
       <div className="shuffle">
         <a href="#" onClick={openRandom}>
           <Shuffle></Shuffle>
@@ -49,7 +55,11 @@ const Navbar = (props) => (
           display: flex;
         }
         .links {
-          margin: 8px;
+          display: flex;
+          flex-flow: row nowrap;
+        }
+        .links div {
+          margin: 4px;
         }
         .shuffle {
           margin: 0px;
