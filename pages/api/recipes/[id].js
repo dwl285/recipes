@@ -8,7 +8,6 @@ recipeHandler.use(middleware);
 
 recipeHandler.get(async (req, res) => {
   const recipeId = req.query.id;
-  console.log(recipeId);
 
   let doc = {};
 

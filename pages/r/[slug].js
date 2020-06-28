@@ -4,6 +4,7 @@ import RecipeImage from "../../components/RecipeImage";
 import Ingredients from "../../components/Ingredients";
 import Method from "../../components/Method";
 import absoluteUrl from "next-absolute-url";
+import Link from "next/link";
 
 export default function Recipe(props) {
   return (
@@ -17,6 +18,9 @@ export default function Recipe(props) {
         <RecipeImage image={props.recipe.image} className="test"></RecipeImage>
         <Ingredients ingredients={props.recipe.ingredients}></Ingredients>
         <Method method={props.recipe.method}></Method>
+        <Link href="/r/update/[slug]" as={`/r/update/${props.recipe._id}`}>
+          <button type="button">Edit recipe</button>
+        </Link>
       </div>
       <style jsx>{`
         .recipe_body {
@@ -25,6 +29,10 @@ export default function Recipe(props) {
         }
         .test {
           margin: 10px;
+        }
+        button {
+          display: flex;
+          align-item: space-around;
         }
       `}</style>
     </Layout>
@@ -37,7 +45,6 @@ export const getServerSideProps = async (context) => {
   const siteConfig = await import(`../../data/config.json`);
   // context contains the query param
   const { slug } = context.query;
-  console.log(slug);
   // grab the file in the posts dir based on the slug
   const res = await fetch(host.origin + `/api/recipes/` + slug);
   const recipe = await res.json();

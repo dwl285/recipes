@@ -53,6 +53,7 @@ const Index = (props) => {
       <div className="recipe_cards">
         {searchResults
           .filter((i) => i.total_cook_time_mins <= cookTime)
+          .filter((i) => i.tags)
           .filter((i) => {
             return !selected[0]
               ? i
